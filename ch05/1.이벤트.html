@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.이벤트</title>
+
+    <!-- 
+        날짜:2023/07/20
+        이름:최동일
+        내용:자바스크립트 이벤트 실습하기
+     -->
+</head>
+<body>
+    <h3>1.이벤트</h3>
+
+    <h4>인라인 방식</h4>
+    <!-- onclick과 같은 명령어/ 함수와 같이 쓰인다. //ondblclick 더블 클릭시  onmouseup 클릭하고 클릭을 해제할 때 생김-->
+    <button onclick="btnClick()">버튼1</button>
+    <button ondblclick="btn2Dbclick()">버튼2</button>
+    <button onmouseup="btn3MouseUp()">버튼3</button>
+    <script>
+        //인라인 모델 방식 - 태그의 이벤트 속성으로 이벤트 처리
+        function btnClick(){
+            alert('버튼 1 클릭');
+        }
+
+        function btn2Dbclick(){
+            alert('버튼 2 더블클릭');
+        }
+
+        function btn3MouseUp(){
+            alert('버튼3 마우스업');
+        }
+        
+    </script>
+    
+    <h4>고전이벤트 모델</h4>
+    <button id="btn1">버튼1</button>
+    <button id="btn2">버튼2</button>
+    <button id="btn3">버튼3</button>
+    <script>
+        //고전이벤트 모델 - 문서객체의 이벤트 속성을 이용
+        //id는 # 클래스는 .
+        const btn1 =document.querySelector('#btn1');
+        const btn2 =document.querySelector('#btn2');
+        const btn3 =document.querySelector('#btn3');
+
+
+        btn1.onclick = function(){
+            alert('버튼 1 출력....');
+        };
+        
+        btn2.ondblclick = ( )=> alert('버튼 2 더블클릭');
+
+        btn3.onmousedown = () => alert('버튼 3 마우스다운');
+
+        
+    </script>
+    
+    <h4>표준방식</h4>
+    
+    <button class="btn1">버튼1</button>
+    <button class="btn2">버튼2</button>
+    <button class="btn3">버튼3</button>
+
+    <script>
+        //표준 이벤트 모델 방식 - 문서객체의 리스너(=핸들러)로 이벤트 처리
+        const button1 = document.getElementsByClassName('btn1')[0];//배열로 선택이 되는데 [0]을 뒤로 붙임으로써 배열이 아닌 선택이 되게 만든다.
+        const button2 = document.getElementsByClassName('btn2')[0];
+        const button3 = document.getElementsByClassName('btn3')[0];
+
+        button1.addEventListener('click',function(){
+            alert('button1 클릭')
+        });
+
+        button2.addEventListener('dblclick',()=> alert('button 2 double click'));
+
+        button3.addEventListener('mouseenter',()=>alert('button3 mouseenter'));//버튼 내로 마우스 커서가 들어가면 이벤트가 발생
+        
+
+
+
+    </script>
+    
+</body>
+</html>
