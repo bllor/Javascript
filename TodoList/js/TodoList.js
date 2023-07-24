@@ -17,17 +17,18 @@
             listItem.innerText= todoValue;
 
             const listBtn = document.createElement('button');
-            listBtn.className= 'btn-close ms-auto';
+            listBtn.className= 'btn-close ms-auto';//x모양버튼
             listBtn.onclick=function(e){
-
+            //X버튼을 눌렀을 때 내용값이 지워지게 만드는 기능
                 let pNode= e.target.parentNode;
                 todoList.removeChild(pNode);
                 
             }
                 
             listItem.appendChild(listBtn);
+            //여기서 버튼을 list 내로 넣음
             todoList.appendChild(listItem);
-            
+            //리스트아이템을 TodoList에 넣음
 
             inputTodo.value='';
             });
