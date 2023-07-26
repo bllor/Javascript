@@ -32,11 +32,12 @@
             }else{
                 reject('promise1 reject');
             }
+          });
+          /*
+            promise1에서 result가 true일 경우 result가, 
+            false일경우 reject가 출력된다.
 
-
-
-        });
-
+        */
 
         promise1
                 .then((msg)=>{
@@ -49,6 +50,10 @@
                     console.log('promise1 end')
                 });
                 //성공하면 then 실패시 catch 무조건 실행되는 finally
+                //then은 resolve나 reject를 받는다.
+                //then((msg)=>{console.log(msg)})에서
+                //msg는 resolve나 reject가 되고,
+                //console.log에는 msg가 들어가서 출력이 된다.
         
 
 
