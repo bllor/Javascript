@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.jQuery 소개</title>
+    
+    <!--
+        날짜: 2023/07/26
+        이름: 최동일
+        내용: 자바스크립트 jQuery 실습하기
+
+    -->
+    <script src="./js/jquery-3.7.0.min.js"></script>
+    <script>
+        //javascript 처리
+        window.onload=function(){
+
+            const city = document.getElementById('city');
+            const li = city.getElementsByTagName('li');
+            li[0].style.color ='red';
+
+        }//onload end
+
+        //jquery처리
+        $(document).ready(function(){
+            
+            $('#city > li:last-child').css('color','green');
+
+        });   
+        //$()함수에 문서 객체 전달함
+        //내장함수가 아니라서 제이커리 라이브러리를 추가 해주어야함.
+        //$==jquery $대신 jquery를 사용해도 된다.
+    </script>
+</head>
+<body>
+    <h3>1.jQuery 소개</h3>
+
+    <UL id="city">
+        <li>서울</li>
+        <li>대전</li>
+        <li>대구</li>
+        <li>부산</li>
+        <li>광주</li>
+    </UL>
+</body>
+</html>
