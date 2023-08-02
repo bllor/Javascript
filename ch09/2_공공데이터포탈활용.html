@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2.공공데이터포털</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b2e59c7b1cc69ff481bdc07331175f20"></script>
+        <script>
+
+            $(function(){
+
+                        var mapContainer = document.getElementById('map1'), // 지도를 표시할 div 
+                    mapOption = { 
+                        center: new kakao.maps.LatLng(35.13710635626333,  129.09884073152554), // 지도의 중심좌표
+                        level: 3 // 지도의 확대 레벨
+                    };
+                
+                // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+                var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+                $.ajax({
+                    url:'https://apis.data.go.kr/B551011/GoCamping/basedList?numOfRows=200&MobileOS=ETC&MobileApp=%ED%85%8C%EC%8A%A4%ED%8A%B8&serviceKey=dDpcwJJ97DRCrfPbJaOsWyiljbbMsw3WRaRp63mO%2FuoTVgdcOrw3WmGuvJMRF8xNjgbEmp8rmp2PZqFJY1f%2B%2Fw%3D%3D&_type=json',
+                    type: 'GET',
+                    dataType: 'json',
+                    success : function(data){
+
+                    const items = data.response.body.items.item;
+                    // var imageSize = new kakao.maps.Size(24, 35); 
+                    // var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+                    //  // 마커 이미지를 생성합니다    
+                    // var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                    for(let item of items){
+                        //console.log(item.facltNm);
+
+                        var marker = new kakao.maps.Marker({
+                                    map: map ,
+                                    position: new kakao.maps.LatLng( item.mapY,  item.mapX), 
+                                    title : item.facltNm 
+                                   
+                                    
+                                });
+                    
+                                marker.setMap(map);
+                            }
+
+
+
+                    }
+                });//ajax end
+
+                var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
+                    mapOption = { 
+                        center: new kakao.maps.LatLng(35.13710635626333,  129.09884073152554), // 지도의 중심좌표
+                        level: 3 // 지도의 확대 레벨
+                    };
+                
+                var map = new kakao.maps.Map(mapContainer, mapOption); 
+                $.ajax({
+                    url:'https://apis.data.go.kr/6260000/BusanAnimalHospService/getTblAnimalHospital?serviceKey=dDpcwJJ97DRCrfPbJaOsWyiljbbMsw3WRaRp63mO%2FuoTVgdcOrw3WmGuvJMRF8xNjgbEmp8rmp2PZqFJY1f%2B%2Fw%3D%3D&pageNo=1&numOfRows=279&resultType=json',
+                    type: 'get',
+                    dataType: 'json',
+                    success : function(data){
+                        console.log(data);
+                        const items = data.getTblAnimalHospital.body.items.item;
+                        console.log(items);
+
+                        for(let item of items){
+                        //console.log(item.facltNm);
+
+                        var marker = new kakao.maps.Marker({
+                                    map: map ,
+                                    position: new kakao.maps.LatLng( item.lat,  item.lon), 
+                                    title : item.facltNm 
+                                   
+                                    
+                                });
+                    
+                                marker.setMap(map);
+                            }
+
+
+                    }//success end
+                })//ajax end
+
+            });//function end
+
+
+            //javascript
+            window.onload = function(){
+                var mapContainer = document.getElementById('map3'), // 지도를 표시할 div 
+                    mapOption = { 
+                        center: new kakao.maps.LatLng(35.13710635626333,  129.09884073152554), // 지도의 중심좌표
+                        level: 3 // 지도의 확대 레벨
+                    };
+
+                var map = new kakao.maps.Map(mapContainer, mapOption); 
+                
+                const url ='https://apis.data.go.kr/6260000/BusanAnimalHospService/getTblAnimalHospital?serviceKey=dDpcwJJ97DRCrfPbJaOsWyiljbbMsw3WRaRp63mO%2FuoTVgdcOrw3WmGuvJMRF8xNjgbEmp8rmp2PZqFJY1f%2B%2Fw%3D%3D&pageNo=1&numOfRows=279&resultType=json';
+
+
+                fetch(url)
+                    .then((res)=>res.json())
+                    .then((data)=>{
+
+                        const items = data.getTblAnimalHospital.body.items.item;
+                        console.log(items);
+
+                        for(let item of items){
+                        //console.log(item.facltNm);
+
+                        var marker = new kakao.maps.Marker({
+                                    map: map ,
+                                    position: new kakao.maps.LatLng( item.lat,  item.lon), 
+                                    title : item.facltNm 
+                                   
+                                    
+                                });
+                    
+                                marker.setMap(map);
+                            }
+
+
+                    })
+
+            };//window.onload end
+
+        </script>
+
+
+    </head>
+    <body>
+        <h3>공공데이터 포탈 활용 실습</h3>
+
+        <h4>전국캠핑장</h4>
+        
+        <div id="map1" style="width:1200PX;height:800px;"></div>
+        
+        
+       <h4>부산동물병원위치</h4>
+       <div id="map2" style="width:1200PX;height:800px;"></div>
+
+       <h4>부산동물병원위치-javascript</h4>
+       <div id="map3" style="width:1200PX;height:800px;"></div>
+
+
+
+    </body>
+</html>
