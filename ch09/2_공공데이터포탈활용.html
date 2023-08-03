@@ -85,9 +85,7 @@
                 })//ajax end
 
             });//function end
-
-
-            //javascript
+           //javascript
             window.onload = function(){
                 var mapContainer = document.getElementById('map3'), // 지도를 표시할 div 
                     mapOption = { 
@@ -99,7 +97,6 @@
                 
                 const url ='https://apis.data.go.kr/6260000/BusanAnimalHospService/getTblAnimalHospital?serviceKey=dDpcwJJ97DRCrfPbJaOsWyiljbbMsw3WRaRp63mO%2FuoTVgdcOrw3WmGuvJMRF8xNjgbEmp8rmp2PZqFJY1f%2B%2Fw%3D%3D&pageNo=1&numOfRows=279&resultType=json';
 
-
                 fetch(url)
                     .then((res)=>res.json())
                     .then((data)=>{
@@ -108,17 +105,12 @@
                         console.log(items);
 
                         for(let item of items){
-                        //console.log(item.facltNm);
-
-                        var marker = new kakao.maps.Marker({
+                         var marker = new kakao.maps.Marker({
                                     map: map ,
                                     position: new kakao.maps.LatLng( item.lat,  item.lon), 
-                                    title : item.facltNm 
-                                   
-                                    
+                                    title : item.facltNm                                  
                                 });
-                    
-                                marker.setMap(map);
+                         marker.setMap(map);
 
                         var infowindow = new kakao.maps.InfoWindow({
                                 content: item.animal_hospital // 인포윈도우에 표시할 내용
