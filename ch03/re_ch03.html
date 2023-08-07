@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클론코딩</title>
+</head>
+<body>
+    <h3>함수</h3>
+    <script>
+        //선언 함수
+        function f(x){
+            let y = 2*x+3
+            return y;
+        }
+
+
+        //익명함수 - 변수에 담아서 사용함
+        let x = function(x,y){
+            let z = x+y;
+            return z;
+        }
+
+        //화살표 함수
+        let x1 = (x,y)=>{let z=x+y; return z};
+        let x2 = (x,y)=>x+y;
+
+    </script>
+</body>
+</html>
